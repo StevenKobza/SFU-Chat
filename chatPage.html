@@ -18,7 +18,9 @@
         <script src = "/socket.io/socket.io.js"></script>
         <script src = "https://code.jquery.com/jquery-1.11.1.js"></script>
         <script>
-            $(function () {
+            var socket = io.connect("http://localhost");
+            
+            /*$(function () {
                 //Creates a new io class named socket
                 var socket = io();
                 $("form").submit(function() {
@@ -31,7 +33,7 @@
                     //Upon receiving a chat message, it appends it to the unordered list
                     $("#messages").append($("<li>").text(msg));
                 });
-            });
+            });*/
         </script>
     </head>
     <body>

@@ -1,0 +1,9 @@
+{
+    "name": "sfu-chat-socket",
+    "version": "1.0.0",
+    "description": "backend for Sfu-code.chat",
+    "dependencies": {
+        "express": "^4.16.4",
+        "socket.io": "^2.1.1"
+    }
+}
