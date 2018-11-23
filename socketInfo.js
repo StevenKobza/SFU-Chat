@@ -20,11 +20,10 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("new message", {
             username: socket.username,
             message: data
-        })
-    })
-    socket.on("chat message", function(msg) {
-        io.emit("chat message", msg);
+        });
     });
+
+    
 });
 
 /*app.get("/", function(req, res) {
