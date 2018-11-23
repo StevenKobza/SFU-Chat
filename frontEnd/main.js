@@ -98,13 +98,13 @@ $(() => {
 
     //Removes it
     const removeChatTyping = (data) => {
-        getTypingMessages(data).fadeOut(() => {
+        getTypingMessages(data).fadeOut(function () {
             $(this).remove();
         });
     }
 
     const addMessageElement = (el, options) => {
-        let $el = $(el);
+        var $el = $(el);
 
         //Set up default options
         if (!options) {
@@ -144,8 +144,8 @@ $(() => {
             lastTypingTime = (new Date()).getTime();
 
             setTimeout( function() {
-                let typingTimer = (new Date()).getTime();
-                let timeDiff = typingTimer - lastTypingTime;
+                var typingTimer = (new Date()).getTime();
+                var timeDiff = typingTimer - lastTypingTime;
                 if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
                     socket.emit("stop typing");
                     typing = false;
@@ -156,7 +156,7 @@ $(() => {
 
     //gets the "X is typing" messages of a user
     const getTypingMessages = (data) => {
-        return $(".typing.message").filter((i) => {
+        return $(".typing.message").filter(function (i) {
             return $(this).data("username") === data.username;
         });
     }
@@ -222,12 +222,12 @@ $(() => {
     }); 
 
     socket.on("user left", (data) => {
-        log(data.username + " joined");
+        log(data.username + " left");
         addParticipantsMessage(data);
     });
 
     socket.on("user joined", (data) => {
-        log(data.username + " left");
+        log(data.username + " joined");
         addParticipantsMessage(data);
         removeChatTyping(data);
     });
