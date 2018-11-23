@@ -5,32 +5,8 @@
         <meta charset="utf-8">
         <title>SFU Chat</title>
         <link rel = "stylesheet" href = "styles.css">
-        <!--<script src = "/socket.io/socket.io.js"></script>
-        <script src = "https://code.jquery.com/jquery-1.11.1.js"></script>
-        <script>
-            var socket = io.connect("http://localhost");
-            
-            /*$(function () {
-                //Creates a new io class named socket
-                var socket = io();
-                $("form").submit(function() {
-                    //Whenever submitted, emits the chat message that was sent. Need to figure out a way to get user info from it as well
-                    socket.emit("chat message", $("#m").val());
-                    $("#m").val('');
-                    return false;
-                });
-                socket.on('chat message', function(msg){
-                    //Upon receiving a chat message, it appends it to the unordered list
-                    $("#messages").append($("<li>").text(msg));
-                });
-            });*/
-        </script>-->
     </head>
     <body>
-        <!--ul id = "messages"></ul>
-        <form action = "">
-            <input id = "m" autocomplete= "off" /><button>Send</button>
-        </form>-->
         <ul class = "pages">
             <li class = "chat page">
                 <div class = "chatArea">
@@ -46,7 +22,7 @@
             </li>
         </ul>
 
-        <script src = "https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src = "https://code.jquery.com/jquery-1.11.1.js"></script>
         <script src = "/socket.io/socket.io.js"></script>
         <script src = "/main.js"></script>
     </body>

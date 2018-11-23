@@ -12,7 +12,7 @@ server.listen(port, () => {
     console.log ("Server listening at port %d", port);
 });
 
-app.use(express.static(path.join(__dirname, '/frontEnd')));
+app.use(express.static(path.join(__dirname, 'frontEnd')));
 
 var numUsers = 0;
 

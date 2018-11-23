@@ -26,7 +26,7 @@ $(() => {
         log(message);
     }
 
-    const setUserName = () => {
+    const setUserName = function() {
         username = cleanInput($usernameInput.val().trim());
 
         //If the username is valid
@@ -42,7 +42,7 @@ $(() => {
     }
 
     //Sends a chat message
-    const sendMessage = () => {
+    const sendMessage = function() {
         var message = $inputMessage.val();
         //Prevent markup from being injected into the message
         message = cleanInput(message);
@@ -65,7 +65,7 @@ $(() => {
     }
 
     //Adds the visual chat message to the message list
-    const addChatMessage = (message, options) => {
+    const addChatMessage = (data, options) => {
         //Don't fade the message in if there's an "X was typing"
         var $typingMessages = getTypingMessages(data);
         options = options || {};
@@ -124,9 +124,9 @@ $(() => {
         if (options.prepend) {
             $messages.prepend($el);
         } else {
-            $messages.apeend($el);
+            $messages.append($el);
         }
-        message[0].scrollTop = $messages[0].scrollHeight;
+        $messages[0].scrollTop = $messages[0].scrollHeight;
     }
 
     //Prevents input from having injected markup
@@ -135,7 +135,7 @@ $(() => {
     }
 
     //Updates the typing event
-    const updateTyping = () => {
+    const updateTyping = function() {
         if (connected) {
             if (!typing) {
                 typing = true;
@@ -143,10 +143,10 @@ $(() => {
             }
             lastTypingTime = (new Date()).getTime();
 
-            setTimeout( () => {
+            setTimeout( function() {
                 let typingTimer = (new Date()).getTime();
                 let timeDiff = typingTimer - lastTypingTime;
-                if (time >= TYPING_TIMER_LENGTH && typing) {
+                if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
                     socket.emit("stop typing");
                     typing = false;
                 }
@@ -172,7 +172,7 @@ $(() => {
         return COLOURS[index];
     }
 
-    $window.keyboard(event => {
+    $window.keydown(event => {
         //Auto-focus the current input when a key is typed
         if (!(event.ctrlKey || event.metaKey || event.altKey)) {
             $currentInput.focus();
@@ -240,18 +240,18 @@ $(() => {
         removeChatTyping(data);
     });
     
-    socket.on("disconnect", (data) => {
+    socket.on("disconnect", () => {
         log("You have been disconnected");
     });
     
-    socket.on("reconnect", (data) => {
+    socket.on("reconnect", () => {
         log("You have been reconnected");
         if (username) {
             socket.emit('add user', username);
         }
     });
     
-    socket.on("reconnect error", (data) => {
+    socket.on("reconnect error", () => {
         log("Attempt to reconnect failed");
     }); 
 });
