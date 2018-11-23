@@ -98,7 +98,7 @@ $(() => {
 
     //Removes it
     const removeChatTyping = (data) => {
-        getTypingMessages(data).fadeOut(() => {
+        getTypingMessages(data).fadeOut(function () {
             $(this).remove();
         });
     }
@@ -222,12 +222,12 @@ $(() => {
     }); 
 
     socket.on("user left", (data) => {
-        log(data.username + " joined");
+        log(data.username + " left");
         addParticipantsMessage(data);
     });
 
     socket.on("user joined", (data) => {
-        log(data.username + " left");
+        log(data.username + " joined");
         addParticipantsMessage(data);
         removeChatTyping(data);
     });
