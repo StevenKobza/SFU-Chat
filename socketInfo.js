@@ -18,9 +18,16 @@ var numUsers = 0;
 io.on("connection", (socket) => {
     var addedUser = false;
 
+    if (numUsers == 0) {
+        fs.readFile("messages.json", function(err, contents) {
+            if (err) throw err;
+            let tempMessages = JSON.parse(contents);
+            messagesArr = tempMessages;
+        });
+    }
+
     socket.on("new message", (data) => {
         let msg = {user:socket.username, message:data};
-        var msgString = JSON.stringify(msg);
         messagesArr.messages.push(msg);
         var msgsString = JSON.stringify(messagesArr);
         socket.broadcast.emit("new message", {
