@@ -1,0 +1,11 @@
+{
+    "accounts" : [
+        {
+            "accountName" : "",
+            "lastTimeLoggedIn" : "",
+            "profPicURL" : "",
+            "nickName": "",
+            "description": ""
+        }
+    ]
+}

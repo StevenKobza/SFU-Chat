@@ -4,9 +4,8 @@ var path = require("path");
 var server = require("http").createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
-var file = path.join(__dirname, 'frontEnd');
-
-console.log(file);
+var fs = require("fs");
+var messagesArr = {"messages":[]};
 
 server.listen(port, () => {
     console.log ("Server listening at port %d", port);
@@ -20,9 +19,19 @@ io.on("connection", (socket) => {
     var addedUser = false;
 
     socket.on("new message", (data) => {
+        let msg = {user:socket.username, message:data};
+        var msgString = JSON.stringify(msg);
+        messagesArr.messages.push(msg);
+        var msgsString = JSON.stringify(messagesArr);
         socket.broadcast.emit("new message", {
             username: socket.username,
             message: data
+        });
+        fs.writeFile("messages.json", msgsString + "\n", function(err) {
+            if (err) {
+                throw err;
+            }
+            console.log("saved");
         });
     });
 
