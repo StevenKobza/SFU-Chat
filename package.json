@@ -5,6 +5,7 @@
     "main": "socketInfo.js",
     "author": "Steven Kobza",
     "dependencies": {
+        "eslint": "^5.10.0",
         "express": "^4.16.4",
         "socket.io": "^2.1.1"
     },
